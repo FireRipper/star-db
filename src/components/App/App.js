@@ -10,7 +10,7 @@ import './App.css'
 
 const App = () => {
     return (
-        <div className='container-fluid'>
+        <div className='container'>
             <Header />
             <RandomPlanet />
             <div className="row mb-2">
