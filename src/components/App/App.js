@@ -1,19 +1,14 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import Header from '../Header'
 import PeoplePage from '../PeoplePage'
 import RandomPlanet from '../RandomPlanet'
 import ErrorButton from '../ErrorButton'
 import ErrorIndicator from '../ErrorIndicator'
-import ItemList from '../ItemList'
-import PersonDetails from '../PersonDetails'
-import SwapiService from '../../services/swapi-service'
 
 import './App.css'
 
 export default class App extends Component {
-
-    swapiService = new SwapiService()
 
     state = {
         hasError: false
@@ -36,7 +31,7 @@ export default class App extends Component {
                 <RandomPlanet />
                 <ErrorButton />
                 <PeoplePage />
-                <div className="row mb-2">
+                {/*<div className="row mb-2">
                     <div className="col-md-6">
                         <ItemList
                             onItemSelected={this.onPersonSelected}
@@ -59,7 +54,7 @@ export default class App extends Component {
                     <div className="col-md-6">
                         <PersonDetails personId={this.state.selectedPerson} />
                     </div>
-                </div>
+                </div>*/}
             </div>
         )
     }
