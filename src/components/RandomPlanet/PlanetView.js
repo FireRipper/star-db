@@ -3,7 +3,7 @@ import React from 'react'
 const PlanetView = ({ planet }) => {
 
     const { id, name, population,
-        rotationPeroid, diameter } = planet
+        rotationPeriod, diameter } = planet
     return (
         <React.Fragment>
             <img className="planet-image" alt={name}
@@ -17,7 +17,7 @@ const PlanetView = ({ planet }) => {
                     </li>
                     <li className="list-group-item">
                         <span className="term">Rotation Period</span>
-                        <span>{rotationPeroid}</span>
+                        <span>{rotationPeriod}</span>
                     </li>
                     <li className="list-group-item">
                         <span className="term">Diameter</span>
