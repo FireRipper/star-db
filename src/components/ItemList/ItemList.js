@@ -6,7 +6,7 @@ import Spinner from '../Spinner'
 export default class ItemList extends Component {
 
     state = {
-        itemList: null,
+        itemList: null
     }
 
     componentDidMount() {
@@ -27,6 +27,7 @@ export default class ItemList extends Component {
             const { id, name } = item
 
             const label = this.props.children(item)
+
             return (
                 <li className="list-group-item"
                     key={id + name}
@@ -41,7 +42,7 @@ export default class ItemList extends Component {
 
         const { itemList } = this.state
 
-        if (!itemList){
+        if (!itemList) {
             return <Spinner />
         }
 

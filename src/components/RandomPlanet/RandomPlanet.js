@@ -50,7 +50,7 @@ export default class RandomPlanet extends Component {
         const content = hasData ? <PlanetView planet={planet} /> : null
 
         return (
-            <div className={`random-planet jumbotron rounded ${loading ? ' justify-content-center' : null}`}>
+            <div className={`random-planet jumbotron rounded ${loading ? ' justify-content-center' : ''}`}>
                 {errorMessage}
                 {spinner}
                 {content}
