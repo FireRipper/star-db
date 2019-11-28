@@ -48,9 +48,8 @@ export default class ItemDetails extends Component {
         if (!item) {
             return <span>Select a item from a list</span>
         }
-        const {
-            name
-        } = item
+
+        const { name } = item
 
         if (loading) {
             return (

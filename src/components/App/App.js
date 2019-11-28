@@ -7,14 +7,16 @@ import ErrorIndicator from '../ErrorIndicator'
 
 import './App.css'
 import ErrorBoundary from '../ErrorBoundary'
-import SwapiService from '../../services/swapi-service'
-import ItemDetails  from '../ItemDetails'
-import RecordItems from '../RecordItems'
 import RowItem from '../containers/RowItem'
+import {
+    PersonList,
+    PlanetList,
+    StarshipList,
+    PersonDetails,
+    PlanetDetails
+} from '../SwComponents'
 
 export default class App extends Component {
-
-    swapiService = new SwapiService()
 
     state = {
         hasError: false
@@ -26,32 +28,10 @@ export default class App extends Component {
     }
 
     render() {
-        const { getPerson, getPlanet, getPersonImage, getPlanetImage } = this.swapiService
 
         if (this.state.hasError) {
             return <ErrorIndicator />
         }
-
-        const personDetails = (
-            <ItemDetails
-                itemId={8}
-                getData={getPerson}
-                getImageUrl={getPersonImage}
-            >
-                <RecordItems field='gender' label='Gender' />
-                <RecordItems field='eyeColor' label='Eye Color' />
-                <RecordItems field='birthYear' label='Birth year' />
-            </ItemDetails>)
-        const planetDetails = (
-            <ItemDetails
-                itemId={3}
-                getData={getPlanet}
-                getImageUrl={getPlanetImage}
-            >
-                <RecordItems field='diameter' label='Diameter' />
-                <RecordItems field='rotationPeriod' label='Rotation Period' />
-                <RecordItems field='population' label='Population' />
-            </ItemDetails>)
 
         return (
             <ErrorBoundary>
@@ -60,8 +40,14 @@ export default class App extends Component {
                     <RandomPlanet />
                     <ErrorButton />
                     <RowItem
-                        left={personDetails}
-                        right={planetDetails} />
+                        left={<PersonList />}
+                        right={<PersonDetails itemId={11} />} />
+                    <RowItem
+                        left={<PlanetList />}
+                        right={<PlanetDetails itemId={5} />} />
+                    <RowItem
+                        left={<StarshipList />}
+                        right={'Not working!'} />
                 </div>
             </ErrorBoundary>
         )
