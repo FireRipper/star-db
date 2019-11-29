@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Spinner from '../../components/Spinner'
 
-
 const withData = (View, getData) => {
     return class extends Component {
         state = {

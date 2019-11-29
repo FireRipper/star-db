@@ -15,6 +15,7 @@ import {
     PersonDetails,
     PlanetDetails
 } from '../SwComponents'
+import RecordItems from '../RecordItems'
 
 export default class App extends Component {
 
@@ -41,10 +42,22 @@ export default class App extends Component {
                     <ErrorButton />
                     <RowItem
                         left={<PersonList />}
-                        right={<PersonDetails itemId={11} />} />
+                        right={
+                            <PersonDetails itemId={11}>
+                                <RecordItems field='gender' label='Gender' />
+                                <RecordItems field='eyeColor' label='Eye Color' />
+                                <RecordItems field='birthYear' label='Birth year' />
+                            </PersonDetails>
+                        } />
                     <RowItem
                         left={<PlanetList />}
-                        right={<PlanetDetails itemId={5} />} />
+                        right={
+                            <PlanetDetails itemId={2}>
+                                <RecordItems field='diameter' label='Diameter' />
+                                <RecordItems field='rotationPeriod' label='Rotation Period' />
+                                <RecordItems field='population' label='Population' />
+                            </PlanetDetails>
+                        } />
                     <RowItem
                         left={<StarshipList />}
                         right={'Not working!'} />

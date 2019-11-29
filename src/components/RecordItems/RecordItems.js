@@ -1,9 +1,9 @@
 import React from 'react'
 
-const RecordItems = ({ item, field, label }) => (
+const RecordItems = ({ data, field, label }) => (
     <li className="list-group-item">
         <span className="term">{label}</span>
-        <span>{ item[field] }</span>
+        <span>{ data[field] }</span>
     </li>
 )
 
