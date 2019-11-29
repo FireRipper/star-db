@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Spinner from '../../components/Spinner'
+import Spinner from '../components/Spinner'
 
-const withDetails = (ViewDetails, getData, getImageUrl) => {
+const withDetails = (ViewDetails) => {
     return class extends Component {
         state = {
             data: null,
@@ -24,7 +24,7 @@ const withDetails = (ViewDetails, getData, getImageUrl) => {
         }
 
         updateItem() {
-            const { itemId } = this.props
+            const { itemId, getData, getImageUrl } = this.props
 
             if (!itemId) {
                 return

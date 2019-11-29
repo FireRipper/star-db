@@ -1,21 +1,35 @@
 import ItemDetails from '../ItemDetails'
-import SwapiService from '../../services/swapi-service'
-import { withDetails } from '../../hoc-helpers/withDetails'
+import { withDetails, withSwapiService } from '../../hoc-helpers'
 
-const swapiService = new SwapiService()
+const mapPersonMethodsToProps = (swapiService) => {
+    return {
+        getData: swapiService.getPerson,
+        getImageUrl: swapiService.getPersonImage
+    }
+}
 
-const {
-    getPerson,
-    getPlanet,
-    getStarship,
-    getPersonImage,
-    getPlanetImage,
-    getStarshipImage,
-} = swapiService
+const mapPlanetMethodsToProps = (swapiService) => {
+    return {
+        getData: swapiService.getPlanet,
+        getImageUrl: swapiService.getPlanetImage
+    }
+}
+const mapStarshipMethodsToProps = (swapiService) => {
+    return {
+        getData: swapiService.getStarship,
+        getImageUrl: swapiService.getStarshipImage
+    }
+}
 
-const PersonDetails = withDetails(ItemDetails, getPerson, getPersonImage)
-const PlanetDetails = withDetails(ItemDetails, getPlanet, getPlanetImage)
-const StarshipDetails = withDetails(ItemDetails, getStarship, getStarshipImage)
+const PersonDetails = withSwapiService(
+                        withDetails(ItemDetails)
+                        , mapPersonMethodsToProps)
+const PlanetDetails = withSwapiService(
+                        withDetails(ItemDetails)
+                        , mapPlanetMethodsToProps)
+const StarshipDetails = withSwapiService(
+                        withDetails(ItemDetails)
+                        , mapStarshipMethodsToProps)
 
 export {
     PersonDetails,
