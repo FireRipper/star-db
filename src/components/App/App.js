@@ -8,6 +8,7 @@ import ErrorIndicator from '../ErrorIndicator'
 import './App.css'
 import ErrorBoundary from '../ErrorBoundary'
 import RowItem from '../containers/RowItem'
+import { Record } from '../ItemDetails/ItemDetails'
 import {
     PersonList,
     PlanetList,
@@ -15,7 +16,6 @@ import {
     PersonDetails,
     PlanetDetails
 } from '../SwComponents'
-import RecordItems from '../RecordItems'
 
 export default class App extends Component {
 
@@ -44,18 +44,18 @@ export default class App extends Component {
                         left={<PersonList />}
                         right={
                             <PersonDetails itemId={11}>
-                                <RecordItems field='gender' label='Gender' />
-                                <RecordItems field='eyeColor' label='Eye Color' />
-                                <RecordItems field='birthYear' label='Birth year' />
+                                <Record field='gender' label='Gender' />
+                                <Record field='eyeColor' label='Eye Color' />
+                                <Record field='birthYear' label='Birth year' />
                             </PersonDetails>
                         } />
                     <RowItem
                         left={<PlanetList />}
                         right={
                             <PlanetDetails itemId={2}>
-                                <RecordItems field='diameter' label='Diameter' />
-                                <RecordItems field='rotationPeriod' label='Rotation Period' />
-                                <RecordItems field='population' label='Population' />
+                                <Record field='diameter' label='Diameter' />
+                                <Record field='rotationPeriod' label='Rotation Period' />
+                                <Record field='population' label='Population' />
                             </PlanetDetails>
                         } />
                     <RowItem
