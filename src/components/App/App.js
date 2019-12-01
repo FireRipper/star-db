@@ -8,6 +8,7 @@ import RowItem from '../containers/RowItem'
 import { SwapiServiceProvider } from '../SwapiServiceContext'
 import { Record } from '../ItemDetails/ItemDetails'
 import SwapiService from '../../services/swapi-service'
+import DummySwapiService from '../../services/dummy-swapi-service'
 import {
     PersonList,
     PlanetList,
@@ -20,10 +21,20 @@ import './App.css'
 
 export default class App extends Component {
 
-    swapiService = new SwapiService()
-
     state = {
-        hasError: false
+        hasError: false,
+        swapiService: new SwapiService()
+    }
+
+    onServiceChange = () => {
+        this.setState(({ swapiService }) => {
+            const Service = swapiService instanceof SwapiService ?
+                DummySwapiService : SwapiService
+
+            return {
+                swapiService: new Service()
+            }
+        })
     }
 
     componentDidCatch(error, errorInfo) {
@@ -39,9 +50,9 @@ export default class App extends Component {
 
         return (
             <ErrorBoundary>
-                <SwapiServiceProvider value={this.swapiService}>
+                <SwapiServiceProvider value={this.state.swapiService}>
                     <div className='container'>
-                        <Header />
+                        <Header onServiceChange={this.onServiceChange}/>
                         <RandomPlanet />
                         <ErrorButton />
                         <RowItem

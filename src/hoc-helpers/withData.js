@@ -4,22 +4,35 @@ import Spinner from '../components/Spinner'
 const withData = (View) => {
     return class extends Component {
         state = {
-            data: null
+            data: null,
+            loading: true
         }
 
         componentDidMount() {
+            this.updateList()
+        }
+
+        componentDidUpdate(prevProps) {
+            if (this.props.getData !== prevProps.getData) {
+                this.setState({ loading: true })
+                this.updateList()
+            }
+        }
+
+        updateList() {
             this.props.getData()
                 .then((data) => {
                     this.setState({
-                        data
+                        data,
+                        loading: false
                     })
                 })
         }
 
         render() {
-            const { data } = this.state
+            const { data, loading } = this.state
 
-            if (!data) {
+            if (!data || loading) {
                 return <Spinner />
             }
 
