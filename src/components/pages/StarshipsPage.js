@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StarshipList } from '../SwComponents'
+import { StarshipDetails, StarshipList } from '../SwComponents'
 import RowItem from '../containers/RowItem'
 
 export default class StarshipsPage extends Component {
@@ -12,10 +12,13 @@ export default class StarshipsPage extends Component {
     }
 
     render() {
+        const { selectedItem } = this.state
+
         return (
             <RowItem
-                left={<StarshipList onItemSelected={this.onItemSelected} />}
-                right={'Not working'} />
+                left={<StarshipList/>}
+                right={<StarshipDetails  itemId={selectedItem}/>}
+            />
         )
     }
 }
