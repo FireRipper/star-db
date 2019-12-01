@@ -1,5 +1,5 @@
 import ItemDetails from '../ItemDetails'
-import { withDetails, withSwapiService } from '../../hoc-helpers'
+import { withDetails, withSwapiService, compose } from '../../hoc-helpers'
 
 const mapPersonMethodsToProps = (swapiService) => {
     return {
@@ -21,15 +21,22 @@ const mapStarshipMethodsToProps = (swapiService) => {
     }
 }
 
-const PersonDetails = withSwapiService(
-                        withDetails(ItemDetails)
-                        , mapPersonMethodsToProps)
-const PlanetDetails = withSwapiService(
-                        withDetails(ItemDetails)
-                        , mapPlanetMethodsToProps)
-const StarshipDetails = withSwapiService(
-                        withDetails(ItemDetails)
-                        , mapStarshipMethodsToProps)
+//hoc (param)(view)
+
+const PersonDetails = compose(
+    withSwapiService(mapPersonMethodsToProps),
+    withDetails
+)(ItemDetails)
+
+const PlanetDetails = compose(
+    withSwapiService(mapPlanetMethodsToProps),
+    withDetails
+)(ItemDetails)
+
+const StarshipDetails = compose(
+    withSwapiService(mapStarshipMethodsToProps),
+    withDetails
+)(ItemDetails)
 
 export {
     PersonDetails,

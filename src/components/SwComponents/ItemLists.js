@@ -1,6 +1,6 @@
 import React from 'react'
 import ItemList from '../ItemList'
-import { withData, withSwapiService, withChildFunction } from '../../hoc-helpers'
+import { withData, withSwapiService, withChildFunction, compose } from '../../hoc-helpers'
 
 const mapPeopleMethodsToProps = (swapiService) => {
     return {
@@ -22,14 +22,24 @@ const mapStarshipsMethodsToProps = (swapiService) => {
 const renderName = ({ name }) => <span>{name}</span>
 const renderDiameterAndName = ({ diameter, name }) => <span>{name} (Diameter: {diameter})</span>
 
-const PersonList = withSwapiService(withData(withChildFunction(ItemList, renderName
-)), mapPeopleMethodsToProps)
+//hoc (param)   (View (hoc (param)(ItemList)  ))
+const PersonList = compose(
+    withSwapiService(mapPeopleMethodsToProps),
+    withData,
+    withChildFunction(renderName)
+)(ItemList)
 
-const PlanetList = withSwapiService(withData(withChildFunction(ItemList, renderDiameterAndName
-)), mapPlanetsMethodsToProps)
+const PlanetList = compose(
+    withSwapiService(mapPlanetsMethodsToProps),
+    withData,
+    withChildFunction(renderDiameterAndName)
+)(ItemList)
 
-const StarshipList = withSwapiService(withData(withChildFunction(ItemList, renderName
-)), mapStarshipsMethodsToProps)
+const StarshipList = compose(
+    withSwapiService(mapStarshipsMethodsToProps),
+    withData,
+    withChildFunction(renderName)
+)(ItemList)
 
 export {
     PersonList,
